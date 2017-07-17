@@ -385,6 +385,7 @@ func (d *deployCmd) deploy(
 			".js":   {},
 			".ejs":  {},
 			".jade": {},
+			".pug": {},  // jade now is pug
 			".json": {},
 		},
 		EndPoint:      "scripts",
