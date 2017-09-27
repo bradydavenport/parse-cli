@@ -14,10 +14,10 @@ import (
 )
 
 const (
-	macDownload       = "parse"
-	windowsDownload   = "parse.exe"
-	linuxDownload     = "parse_linux"
-	linuxArmDownload  = "parse_linux_arm"
+	macDownload       = "b4a"
+	windowsDownload   = "b4a.exe"
+	linuxDownload     = "b4a_linux"
+	linuxArmDownload  = "b4a_linux_arm"
 	downloadURLFormat = "https://github.com/back4app/parse-cli/releases/download/release_%s/%s"
 )
 
