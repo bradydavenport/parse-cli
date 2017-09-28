@@ -9,6 +9,10 @@ before_deploy:
   - GOOS=windows GOARCH=386 go build -o b4a.exe -v github.com/back4app/parse-cli
   - GOOS=linux GOARCH=386 go build -o b4a_linux -v github.com/back4app/parse-cli
   - GOOS=linux GOARCH=arm go build -o b4a_linux_arm -v github.com/back4app/parse-cli
+  - cp b4a parse
+  - cp b4a.exe parse.exe
+  - cp b4a_linux parse_linux
+  - cp b4a_linux_arm parse_linux_arm
 deploy:
   provider: releases
   api_key:
@@ -19,6 +23,10 @@ deploy:
     - b4a.exe
     - b4a_linux
     - b4a_linux_arm
+    - parse
+    - parse.exe
+    - parse_linux
+    - parse_linux_arm
   skip_cleanup: true
   on:
     repo: back4app/parse-cli
