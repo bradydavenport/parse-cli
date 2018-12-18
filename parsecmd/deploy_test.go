@@ -176,7 +176,12 @@ func TestUploadFileNoFile(t *testing.T) {
 
 	var d deployCmd
 	_, err := d.uploadFile("cloud/master.js", "", h.Env, nil)
-	ensure.Err(t, err, regexp.MustCompile(`No files to upload`))
+	switch runtime.GOOS {
+	case "windows":
+		ensure.Err(t, err, regexp.MustCompile(`The system cannot find the path specified.`))
+	default:
+		ensure.Err(t, err, regexp.MustCompile(`no such file or directory`))
+	}
 }
 
 func TestUploadFileHttpError(t *testing.T) {
@@ -645,22 +650,22 @@ func TestDeployRetries(t *testing.T) {
 	ctx := parsecli.Context{Config: defaultParseConfig}
 	ctx.Config.GetProjectConfig().Parse.JSSDK = "latest"
 
-	ensure.Err(t, d.run(h.Env, &ctx), regexp.MustCompile("no such file or directory"))
+	ensure.Err(t, d.run(h.Env, &ctx), regexp.MustCompile("No files to upload"))
 	ensure.DeepEqual(t, h.Err.String(), "")
 
 	h.Err.Reset()
 	d.Retries = 2
-	ensure.Err(t, d.run(h.Env, &ctx), regexp.MustCompile("no such file or directory"))
+	ensure.Err(t, d.run(h.Env, &ctx), regexp.MustCompile("No files to upload"))
 	ensure.DeepEqual(
 		t,
 		h.Err.String(),
-		"Deploy failed with error:\nlstat cloud: no such file or directory\nWill retry in 0 seconds.\n\n",
+		"Deploy failed with error:\nNo files to upload\nWill retry in 0 seconds.\n\n",
 	)
 
 	h.Err.Reset()
 	d.Retries = 5
-	ensure.Err(t, d.run(h.Env, &ctx), regexp.MustCompile("no such file or directory"))
-	errStr := "Deploy failed with error:\nlstat cloud: no such file or directory\nWill retry in 0 seconds.\n\n"
+	ensure.Err(t, d.run(h.Env, &ctx), regexp.MustCompile("No files to upload"))
+	errStr := "Deploy failed with error:\nNo files to upload\nWill retry in 0 seconds.\n\n"
 	errStr += strings.Repeat("Sorry, deploy failed again with same error.\nWill retry in 0 seconds.\n\n", 3)
 	ensure.DeepEqual(t, h.Err.String(), errStr)
 }
