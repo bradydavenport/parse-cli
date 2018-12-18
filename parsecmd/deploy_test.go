@@ -176,12 +176,7 @@ func TestUploadFileNoFile(t *testing.T) {
 
 	var d deployCmd
 	_, err := d.uploadFile("cloud/master.js", "", h.Env, nil)
-	switch runtime.GOOS {
-	case "windows":
-		ensure.Err(t, err, regexp.MustCompile(`The system cannot find the path specified.`))
-	default:
-		ensure.Err(t, err, regexp.MustCompile(`no such file or directory`))
-	}
+	ensure.Err(t, err, regexp.MustCompile(`No files to upload`))
 }
 
 func TestUploadFileHttpError(t *testing.T) {
