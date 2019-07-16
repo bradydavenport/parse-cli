@@ -43,7 +43,12 @@ func allApps(apps []*App) []string {
 	for _, app := range apps {
 		appNames = append(appNames, app.Name)
 	}
-	sort.Strings(appNames)
+	sort.Slice(appNames, func(i, j int) bool {
+		if strings.ToUpper(appNames[i]) == strings.ToUpper(appNames[j]) {
+			return appNames[i] < appNames[j]
+		}
+		return strings.ToUpper(appNames[i]) < strings.ToUpper(appNames[j])
+	})
 	return appNames
 }
 
