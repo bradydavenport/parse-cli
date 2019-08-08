@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 this_dir=$(pwd)
+export GOPATH=$HOME/gopath
 export PATH=$HOME/gopath/bin:$PATH
 rsync -az ./ $HOME/gopath/src/github.com/back4app/parse-cli/
 cd $HOME/gopath/src/github.com/back4app/parse-cli
