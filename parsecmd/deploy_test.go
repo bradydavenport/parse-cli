@@ -471,7 +471,7 @@ func TestDeployFilesChanged(t *testing.T) {
 			Public: map[string]string{"index.html": "9e2354a0ebac5852bc674026137c8612"},
 		},
 		Versions: deployFileData{
-			Cloud:  map[string]string{"sample.txt": "f2", """main.js": "f2"},
+			Cloud:  map[string]string{"sample.txt": "f2", "main.js": "f2"},
 			Public: map[string]string{"index.html": "f2"},
 		},
 	}
