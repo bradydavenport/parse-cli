@@ -492,9 +492,11 @@ The following files will be ignored:
 Finished uploading files
 New release is named v1 (using Parse JavaScript SDK vlatest)
 `,
-			filepath.Join(h.Env.Root, parsecli.CloudDir, "main.js"),
 			strings.Join([]string{
-				filepath.Join(h.Env.Root, parsecli.CloudDir, "sample.txt"),
+			    filepath.Join(h.Env.Root, parsecli.CloudDir, "main.js"),
+			    filepath.Join(h.Env.Root, parsecli.CloudDir, "sample.txt")},
+			    "\n"),
+			strings.Join([]string{
 				filepath.Join(h.Env.Root, parsecli.CloudDir, "test~")},
 				"\n"),
 			filepath.Join(h.Env.Root, parsecli.HostingDir, "index.html"),
@@ -511,11 +513,11 @@ func TestDeployFilesUnChanged(t *testing.T) {
 	info := &deployInfo{
 		ParseVersion: "latest",
 		Checksums: deployFileData{
-			Cloud:  map[string]string{"main.js": "4ece160cc8e5e828ee718e7367cf5d37"},
+			Cloud:  map[string]string{"sample.txt": "d41d8cd98f00b204e9800998ecf8427e", "main.js": "4ece160cc8e5e828ee718e7367cf5d37"},
 			Public: map[string]string{"index.html": "9e2354a0ebac5852bc674026137c8612"},
 		},
 		Versions: deployFileData{
-			Cloud:  map[string]string{"main.js": "f2"},
+			Cloud:  map[string]string{"sample.txt": "f2", "main.js": "f2"},
 			Public: map[string]string{"index.html": "f2"},
 		},
 	}
@@ -570,7 +572,7 @@ func TestDeployFilesNoVersion(t *testing.T) {
 	expected := &deployInfo{
 		ParseVersion: "latest",
 		Checksums: deployFileData{
-			Cloud:  map[string]string{"main.js": "4ece160cc8e5e828ee718e7367cf5d37", "sample.txt": "d41d8cd98f00b204e9800998ecf8427e"},
+			Cloud:  map[string]string{"sample.txt": "d41d8cd98f00b204e9800998ecf8427e", "main.js": "4ece160cc8e5e828ee718e7367cf5d37"},
 			Public: map[string]string{"index.html": "9e2354a0ebac5852bc674026137c8612"},
 		},
 		Versions: deployFileData{
@@ -596,9 +598,11 @@ The following files will be ignored:
 Finished uploading files
 New release is named v1 (using Parse JavaScript SDK vlatest)
 `,
-			filepath.Join(h.Env.Root, parsecli.CloudDir, "main.js"),
 			strings.Join([]string{
-				filepath.Join(h.Env.Root, parsecli.CloudDir, "sample.txt"),
+			    filepath.Join(h.Env.Root, parsecli.CloudDir, "main.js"),
+			    filepath.Join(h.Env.Root, parsecli.CloudDir, "sample.txt")},
+             	"\n"),
+			strings.Join([]string{
 				filepath.Join(h.Env.Root, parsecli.CloudDir, "test~")},
 				"\n"),
 			filepath.Join(h.Env.Root, parsecli.HostingDir, "index.html"),

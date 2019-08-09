@@ -31,13 +31,9 @@ func CloneSampleCloudCode(
 			if err == errNoFiles {
 				dumpTemplate = true
 			} else {
-				fmt.Fprintln(
-					e.Out,
-					`
-NOTE: If you like to fetch the latest deployed Cloud Code from Parse,
+				fmt.Fprintln(e.Out, `NOTE: If you like to fetch the latest deployed Cloud Code from Parse,
 you can use the "b4a download" command after finishing the set up.
-This will download Cloud Code to a temporary location.
-`,
+This will download Cloud Code to a temporary location.`,
 				)
 			}
 		}

@@ -242,17 +242,10 @@ func (l *Login) AuthUserWithToken(e *Env, strict bool) (string, error) {
 		// user never created an account key: educate them
 		if stackerr.HasUnderlying(err, stackerr.MatcherFunc(os.IsNotExist)) {
 			if strict {
-				fmt.Fprintln(
-					e.Out,
-					`To proceed further, you must configure an account key.
-`,
-				)
+				fmt.Fprintln(e.Out, `To proceed further, you must configure an account key.`,)
 			} else {
-				fmt.Fprintln(
-					e.Out,
-					`We've changed the way the CLI works.
-To save time logging in, you should create an account key.
-`,
+				fmt.Fprintln(e.Out, `We've changed the way the CLI works.
+To save time logging in, you should create an account key.`,
 				)
 
 			}
