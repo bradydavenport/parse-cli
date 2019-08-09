@@ -390,13 +390,7 @@ func (d *deployCmd) deploy(
 	}
 	scriptChecksums, scriptVersions, err := d.uploadSourceFiles(&uploader{
 		DirName: "cloud",
-		Suffixes: map[string]struct{}{
-			".js":   {},
-			".ejs":  {},
-			".jade": {},
-			".pug": {},  // jade now is pug
-			".json": {},
-		},
+		Suffixes: map[string]struct{}{},
 		EndPoint:      "scripts",
 		PrevChecksums: prevDeplInfo.Checksums.Cloud,
 		PrevVersions:  prevDeplInfo.Versions.Cloud,

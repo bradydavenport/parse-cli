@@ -467,7 +467,7 @@ func TestDeployFilesChanged(t *testing.T) {
 	expected := &deployInfo{
 		ParseVersion: "latest",
 		Checksums: deployFileData{
-			Cloud:  map[string]string{"main.js": "4ece160cc8e5e828ee718e7367cf5d37"},
+			Cloud:  map[string]string{"main.js": "4ece160cc8e5e828ee718e7367cf5d37", "sample.txt": "d41d8cd98f00b204e9800998ecf8427e"},
 			Public: map[string]string{"index.html": "9e2354a0ebac5852bc674026137c8612"},
 		},
 		Versions: deployFileData{
@@ -530,7 +530,7 @@ func TestDeployFilesUnChanged(t *testing.T) {
 	expected := &deployInfo{
 		ParseVersion: "latest",
 		Checksums: deployFileData{
-			Cloud:  map[string]string{"main.js": "4ece160cc8e5e828ee718e7367cf5d37"},
+			Cloud:  map[string]string{"sample.txt": "d41d8cd98f00b204e9800998ecf8427e", "main.js": "4ece160cc8e5e828ee718e7367cf5d37"},
 			Public: map[string]string{"index.html": "9e2354a0ebac5852bc674026137c8612"},
 		},
 		Versions: deployFileData{
@@ -570,7 +570,7 @@ func TestDeployFilesNoVersion(t *testing.T) {
 	expected := &deployInfo{
 		ParseVersion: "latest",
 		Checksums: deployFileData{
-			Cloud:  map[string]string{"main.js": "4ece160cc8e5e828ee718e7367cf5d37"},
+			Cloud:  map[string]string{"sample.txt": "d41d8cd98f00b204e9800998ecf8427e", "main.js": "4ece160cc8e5e828ee718e7367cf5d37"},
 			Public: map[string]string{"index.html": "9e2354a0ebac5852bc674026137c8612"},
 		},
 		Versions: deployFileData{
