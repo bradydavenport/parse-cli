@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	Version        = "3.2.1"
+	Version        = "3.3.0"
 	CloudDir       = "cloud"
 	HostingDir     = "public"
 	DefaultBaseURL = "https://parsecli.back4app.com/"
