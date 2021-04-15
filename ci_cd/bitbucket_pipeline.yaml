@@ -1,0 +1,34 @@
+image: back4app/b4a_cli:latest
+pipelines:
+  branches:
+    master:
+     - step:
+          name: Install dependencies
+          script:
+            - apt-get update -y 
+            - apt-get install -y build-essential
+            - apt-get install -y checkinstall
+            - apt-get install -y libssl-dev
+            - apt-get install -y curl
+            - apt-get install -y sudo
+            - apt-get install -y python
+            - apt-get install -y wget
+            - apt-get install -y git
+            - which git                  
+            - cd /opt
+            - wget https://golang.org/dl/go1.12.17.linux-amd64.tar.gz
+            - tar zxf go1.12.17.linux-amd64.tar.gz
+            - export PATH=/opt/go/bin:$PATH
+            - export GOPATH=/go
+            - mkdir -p /go/src/github.com/back4app
+            - /usr/bin/git clone -b back4app https://github.com/back4app/parse-cli.git $GOPATH/src/github.com/back4app
+            - cd $GOPATH/src/github.com/back4app
+            - go get ./...
+            - GOOS=linux GOARCH=amd64 go build -o b4a_64
+            - cd $GOPATH/src/github.com/back4app
+            - chmod 755 $GOPATH/src/github.com/back4app/b4a_64
+            - ls -la $GOPATH/src/github.com/back4app/b4a_64
+            - $GOPATH/src/github.com/back4app/b4a_64 version
+            - file $GOPATH/src/github.com/back4app/b4a_64
+            - mv $GOPATH/src/github.com/back4app/b4a_64 /usr/local/bin/b4a
+            - /usr/local/bin/b4a version
