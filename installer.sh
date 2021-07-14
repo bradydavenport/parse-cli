@@ -10,13 +10,14 @@ echo "Fetching latest version ..."
 # latest="3.0.6-beta-5"
 latest=$(curl https://parsecli.back4app.com/supported?version=latest | python -c "import sys, json; print(json.load(sys.stdin)['version'])")
 
-case `uname` in
-  "Linux" )
+case `uname -p` in
+  "x86_64" )
       url="https://github.com/back4app/parse-cli/releases/download/release_${latest}/b4a_linux";;
-  "Darwin" )
+  "i386" )
       url="https://github.com/back4app/parse-cli/releases/download/release_${latest}/b4a";;
+  "arm" )
+      url="https://github.com/back4app/parse-cli/releases/download/release_${latest}/b4a_mac_m1";;
 esac
-
 
 echo "Version ${latest} will be installed"
 curl --progress-bar --compressed -Lo ${TMP_FILE} ${url}
