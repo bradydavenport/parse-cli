@@ -10,12 +10,18 @@ echo "Fetching latest version ..."
 # latest="3.0.6-beta-5"
 latest=$(curl https://parsecli.back4app.com/supported?version=latest | python -c "import sys, json; print(json.load(sys.stdin)['version'])")
 
-case `uname -p` in
-  "x86_64" )
+case `uname -pm` in
+  "x86_64 x86_64" )
       url="https://github.com/back4app/parse-cli/releases/download/release_${latest}/b4a_linux";;
-  "i386" )
+  "x86_64 unknown")
+      url="https://github.com/back4app/parse-cli/releases/download/release_${latest}/b4a_linux";;
+  "x86_64 i386" )
       url="https://github.com/back4app/parse-cli/releases/download/release_${latest}/b4a";;
-  "arm" )
+  "x86_64 unknown")
+      url="https://github.com/back4app/parse-cli/releases/download/release_${latest}/b4a";;
+  "aarch64 unknown")
+      url="https://github.com/back4app/parse-cli/releases/download/release_${latest}/b4a_mac_m1";;
+  "arm64 arm" ) 
       url="https://github.com/back4app/parse-cli/releases/download/release_${latest}/b4a_mac_m1";;
 esac
 
