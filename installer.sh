@@ -15,8 +15,6 @@ case `uname -pm` in
       url="https://github.com/back4app/parse-cli/releases/download/release_${latest}/b4a_linux";;
   "x86_64 unknown")
       url="https://github.com/back4app/parse-cli/releases/download/release_${latest}/b4a_linux";;
-  "x86_64 i386" )
-      url="https://github.com/back4app/parse-cli/releases/download/release_${latest}/b4a";;
   "x86_64 unknown")
       url="https://github.com/back4app/parse-cli/releases/download/release_${latest}/b4a";;
   "aarch64 unknown")
