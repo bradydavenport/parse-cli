@@ -8,7 +8,7 @@ fi
 echo "Fetching latest version ..."
 
 # latest="3.0.6-beta-5"
-latest=$(curl https://parsecli.back4app.com/supported?version=latest | python -c "import sys, json; print(json.load(sys.stdin)['version'])")
+latest=$(curl https://parsecli.back4app.com/supported?version=latest | python3 -c "import sys, json; print(json.load(sys.stdin)['version'])")
 
 case `uname -pm` in
   "x86_64 x86_64" )
